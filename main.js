@@ -7,7 +7,7 @@ const token = 'NzgzMjI2NTI3NTc4ODQ5MzEy.X8Xqiw.ec0QHoABK4ifPwcD209_4eLdZl4';
 
 const prefix = "-";
 
-const version = '1.0 Aplpha broken';
+const version = '1.0 Alpha';
 
 const ytdl = require('ytdl-core');
 
@@ -27,12 +27,12 @@ client.once('disconnect', () => {
 
 
 
-
+//Conditional statement checking if the user is using a prefix
 client.on('message', async message => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
     //greeting message variables
-    const greetings = ["I am Abot", "You're kind of baka", "You going to listen to some tunes?", "I'm kind of hungry...", "Life is good."];
+    const greetings = ["I am Abot", "How's your day?", "You going to listen to some tunes?", "I'm kind of hungry...", "Life is good."];
     const random = Math.floor(Math.random() * greetings.length);
 
     const serverQueue = queue.get(message.guild.id);
@@ -51,27 +51,27 @@ client.on('message', async message => {
         return;
     } else if (message.content.startsWith(`${prefix}help`)) {
         message.react('💁‍♂️');
-        message.channel.send('Yahallo! I am Abot! A music player for Discord. The commands I am able to process are -play **add link** / -skip / -stop')
+        message.channel.send('Hello, I am Abot! A music player for Discord. The commands I am able to process are -play **add link** / -skip / -stop')
     } else if (message.content.startsWith(`${prefix}hi`)) {
         message.channel.send('Hello, ' + greetings[random]);
     } else {
         message.react('😛');
-        message.channel.send('Not a recognized command Baka! For more info try -help >:P')
+        message.channel.send('Not a recognized command Baka! For more info try -help')
     }
 
 });
-//play command execution function. This also adds to the queue 5 max so far.
+//play command execute function. This also adds to the queue 5 max so far.
 async function execute(message, serverQueue) {
     const args = message.content.split(" ");
     //added checker to see if there is a link
     if (!args[1]) {
-        message.channel.send('Please enter a link you Baka omg!');
+        message.channel.send('Please enter a link!');
         return;
     }
     const voiceChannel = message.member.voice.channel;
     if (!voiceChannel)
         return message.channel.send(
-            "You need to be in a voice channel to play music! Baka!"
+            "You need to be in a voice channel to play music!"
         );
     const permissions = voiceChannel.permissionsFor(message.client.user);
     if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
@@ -159,5 +159,5 @@ function play(guild, song) {
 }
 
 
-// Below should be the last line of the script
+// Below should be the last line of the script which takes the token to connect to the discord API
 client.login(token);
