@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 
 const client = new Discord.Client();
 
-const token = 'NzgzMjI2NTI3NTc4ODQ5MzEy.X8Xqiw.ec0QHoABK4ifPwcD209_4eLdZl4';
+const token = 'Please add token, only those trusted and authorized will be able to have access to the Token';
 
 const prefix = "-";
 
